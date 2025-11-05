@@ -8,7 +8,7 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { createLowlight } from 'lowlight';
 import Toolbar from '@/components/forum/Toolbar/Toolbar';
 import 'highlight.js/styles/atom-one-dark.css';
-import styled from 'styled-components';
+import './TipTap.css';
 
 // Importation des langages pour la coloration syntaxique
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -54,6 +54,9 @@ const TipTap = ({
   };
 
   const editor = useEditor({
+    immediatelyRender: false,
+    autofocus: true,
+    content: content,
     extensions: [
       StarterKit.configure({
         codeBlock: false,
@@ -71,83 +74,34 @@ const TipTap = ({
         defaultLanguage: 'javascript',
         HTMLAttributes: {
           class: 'code-block',
-          renderHTML({ node }: { node: Node & { attrs: CodeBlockNodeAttributes } }) {
+          renderHTML({
+            node,
+          }: {
+            node: Node & { attrs: CodeBlockNodeAttributes };
+          }) {
             return {
-              'data-language': node.attrs.language || 'javascript'
-            }
-          }
+              'data-language': node.attrs.language || 'javascript',
+            };
+          },
         },
       }),
     ],
     onUpdate: ({ editor }) => {
       handleChange(editor.getHTML());
     },
+    onFocus: ({ editor }) => {
+      editor.commands.focus('end');
+    },
   });
 
   return (
-    <EditorContainer>
+    <div className="tiptap-editor-container">
       <Toolbar editor={editor} content={content} />
-      <StyledEditorContent style={{ whiteSpace: 'pre-line' }} editor={editor} />
-    </EditorContainer>
+      <div className="tiptap-editor-content" style={{ whiteSpace: 'pre-line' }}>
+        <EditorContent editor={editor} />
+      </div>
+    </div>
   );
 };
-
-const EditorContainer = styled.div`
-  border-radius: 6px;
-  overflow: hidden;
-`;
-
-const StyledEditorContent = styled(EditorContent)`
-    .ProseMirror {
-        padding: 0.8rem;
-        border: 1px solid #1d1e35;
-        border-top: none;
-        background-color: #22233a;
-        color: #e4e4e4;
-        min-height: 150px;
-        border-radius: 0 0 6px 6px;
-        outline: none;
-        font-size: 1rem;
-        transition: border-color 0.3s;
-
-        p {
-            margin: 0.5em 0;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin: 1rem 0 0.5rem;
-            color: #e4e4e4;
-        }
-
-        ul,
-        ol {
-            padding-left: 1.5rem;
-            margin: 0.5em 0;
-        }
-
-        li {
-            margin: 0.2em 0;
-        }
-
-        blockquote {
-            border-left: 3px solid #3f69ff;
-            padding-left: 1rem;
-            margin-left: 0;
-            margin-right: 0;
-            font-style: italic;
-            color: #c4c4c4;
-        }
-
-        .code-block {
-            background-color: #1a1b2e;
-            border-radius: 8px;  // Bordures plus arrondies
-            margin: 1rem 0;  
-            padding: 1rem;// Plus d'espace vertical
-            position: relative;
-            border: 1px solid #2d2e4a;  // Bordure subtile
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);  // Ombre portée
-        }
-`;
 
 export default TipTap;

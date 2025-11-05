@@ -31,7 +31,7 @@ const bodyParserConfig = defineConfig({
 
   /**
    * Config for the "multipart/form-data" content-type parser.
-   * File uploads are handled by the multipart parser.
+   * File avatars are handled by the multipart parser.
    */
   multipart: {
     /**

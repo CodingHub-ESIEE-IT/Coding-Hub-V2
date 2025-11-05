@@ -1,162 +1,136 @@
-import React from 'react';
-import styled from 'styled-components';
+'use client';
+import React, { useEffect } from 'react';
 import timeIcon from '../../../../public/images/time.svg';
 import likeIcon from '../../../../public/images/like.svg';
+import likeFilledIcon from '../../../../public/images/like-filled.svg';
 import starIcon from '../../../../public/images/star.svg';
 import Image from 'next/image';
+import './AnswerCard.css';
+import { Reply } from '@/types/reply';
+import ContentHighLight from '@/components/forum/ContentHighLight/ContentHighLight';
+import { createLikeAction, deleteLikeAction } from '@/lib/actions/like.action';
+import { User } from '@/types/user';
+import { toggleBestAnswerAction } from '@/lib/actions/reply.action';
 
-const AnswerCard = ({ bestAnswer = 'false' }: { bestAnswer?: string }) => {
+const AnswerCard = ({
+  bestAnswer = false,
+  reply,
+  setReplies,
+  user,
+}: {
+  bestAnswer?: boolean;
+  reply: Reply;
+  setReplies: React.Dispatch<React.SetStateAction<Reply[]>>;
+  user: User | null;
+}) => {
+  const [likes, setLikes] = React.useState<number>(0);
+
+  useEffect(() => {
+    setLikes(reply.likes?.length || 0);
+  }, [reply.likes]);
+
+  const toggleLike = async () => {
+    const isLiked = reply.likes?.some((like) => like.userId === user?.id);
+
+    const updateLikes = (increment: number) => {
+      setLikes((prevLikes) => Math.max(prevLikes + increment, 0));
+    };
+
+    const handleLikeAction = async (action: string) => {
+      try {
+        const data =
+          action === 'create'
+            ? await createLikeAction(reply.id)
+            : await deleteLikeAction(reply.id);
+        if (isLiked) {
+          reply.likes = reply.likes?.filter((like) => like.userId !== user?.id);
+        } else {
+          reply.likes = [...(reply.likes || []), data];
+        }
+        updateLikes(isLiked ? -1 : 1);
+      } catch (error) {
+        console.error(`Erreur lors du ${isLiked ? 'unlike' : 'like'}:`, error);
+        updateLikes(isLiked ? -1 : 1);
+      }
+    };
+
+    if (isLiked) {
+      await handleLikeAction('delete');
+    } else {
+      await handleLikeAction('create');
+    }
+  };
+
+  const toggleBestAnswer = async () => {
+    try {
+      await toggleBestAnswerAction(reply.id);
+      reply.bestAnswer = !reply.bestAnswer;
+      setReplies((prevReplies) =>
+        prevReplies.map((r) =>
+          r.id === reply.id
+            ? { ...r, bestAnswer: reply.bestAnswer }
+            : { ...r, bestAnswer: false },
+        ),
+      );
+    } catch (error) {
+      console.error('Erreur lors du unlike:', error);
+    }
+  };
+
   return (
-    <CardWrapper>
-      {bestAnswer === 'true' && (
-        <StarButton>
+    <div className="answer-card-wrapper">
+      {reply.userId === user?.id && (
+        <button
+          className="answer-card-star-button"
+          onClick={() => toggleBestAnswer()}
+        >
           <Image src={starIcon} alt="Résolu" />
-        </StarButton>
+        </button>
       )}
-      <Card $solved={bestAnswer}>
-        {bestAnswer === 'true' && (
-          <ResolutionBadge>Meilleure réponse</ResolutionBadge>
-        )}
-        <div>
-          <UserAvatar />
-        </div>
-        <AnswerContainer>
-          <AnswerHeader>
-            <div>
-              <Pseudo>polakotekk</Pseudo>
-              <Role>Élève</Role>
+      <div className={`answer-card ${bestAnswer ? 'answer-card--solved' : ''}`}>
+        {bestAnswer ? (
+          <div className="answer-card-resolution-badge">Meilleure réponse</div>
+        ) : null}
+        <div
+          className="answer-card-container"
+          style={{ paddingLeft: reply.userId === user?.id ? '1rem' : '0' }}
+        >
+          <div className="answer-card-main-head">
+            <div style={{ display: 'flex' }}>
+              <div className="answer-card-user-avatar"></div>
+              <div>
+                <p className="answer-card-pseudo">{reply.user?.username}</p>
+                <p className="answer-card-role">Élève</p>
+              </div>
             </div>
-            <AnswerInfos>
-              <AnswerDate>
-                <Image src={timeIcon} alt="time" /> Il y a 2 jours
-              </AnswerDate>
-              <AnswerLikes>
-                <Image src={likeIcon} alt="likes" /> 12
-              </AnswerLikes>
-            </AnswerInfos>
-          </AnswerHeader>
-          <div>
-            <AnswerContent>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velitesse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id laborum.
-            </AnswerContent>
+            <div className="answer-card-header">
+              <div className="answer-card-infos">
+                <p className="answer-card-date">
+                  <Image src={timeIcon} alt="time" /> Il y a 2 jours
+                </p>
+                <button
+                  className="answer-card-likes"
+                  onClick={() => toggleLike()}
+                >
+                  <Image
+                    style={{ marginRight: '0.3rem' }}
+                    src={
+                      reply.likes?.some((like) => like.userId === user?.id)
+                        ? likeFilledIcon
+                        : likeIcon
+                    }
+                    alt="likes"
+                  />
+                  {likes}
+                </button>
+              </div>
+            </div>
           </div>
-        </AnswerContainer>
-      </Card>
-    </CardWrapper>
+          <ContentHighLight htmlContent={reply.content} />
+        </div>
+      </div>
+    </div>
   );
 };
-
-const CardWrapper = styled.div`
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  width: 90%;
-`;
-
-const StarButton = styled.div`
-  position: absolute;
-  left: -15px;
-  top: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.4rem;
-  background-color: #292b48;
-  z-index: 1000;
-  border: 1px solid #2cad72;
-  transform: translateY(-50%);
-  border-radius: 7px;
-`;
-
-const Card = styled.div<{ $solved: string }>`
-  width: 100%;
-  background-color: #22233a;
-  border-radius: 10px;
-  border: 1px solid
-    ${(props) => (props.$solved === 'true' ? '#2CAD72' : '#606060')};
-  padding: 1.2rem 1.4rem;
-  color: #e4e4e4;
-  display: flex;
-  position: relative;
-`;
-
-const ResolutionBadge = styled.div`
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #292b48;
-  color: white;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 8px 3rem;
-  border-radius: 6px;
-  border: 0.5px solid #2cad72;
-`;
-
-const UserAvatar = styled.div`
-  background-color: red;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-`;
-
-const AnswerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const AnswerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  margin-top: 0.3rem;
-
-  img {
-    margin-right: 0.5rem;
-  }
-`;
-
-const Pseudo = styled.p`
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-`;
-
-const Role = styled.p`
-  font-size: 0.8rem;
-  font-weight: 500;
-`;
-
-const AnswerInfos = styled.div`
-  display: flex;
-`;
-
-const AnswerDate = styled.p`
-  margin-right: 2rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  display: flex;
-  align-items: start;
-`;
-
-const AnswerLikes = styled(AnswerDate)`
-  margin-right: 0;
-`;
-
-const AnswerContent = styled.p`
-  font-size: 0.9rem;
-  line-height: 1.5rem;
-`;
 
 export default AnswerCard;

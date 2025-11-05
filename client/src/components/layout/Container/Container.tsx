@@ -1,8 +1,7 @@
-'use client';
-import Header from '@/components/layout/Header/Header';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import './Container.css';
 import Footer from '@/components/layout/Footer/Footer';
+import Header from "@/components/layout/Header/Header";
 
 interface ContainerProps {
   children: ReactNode;
@@ -10,24 +9,14 @@ interface ContainerProps {
 
 const Container = ({ children }: ContainerProps) => {
   return (
-    <PageWrapper>
-      <Header />
-      <MainContent>
-        {children}
-      </MainContent>
-      <Footer />
-    </PageWrapper>
+      <div className="page-wrapper">
+        <Header />
+        <div className="main-content">
+          {children}
+        </div>
+        <Footer />
+      </div>
   );
 };
-
-const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const MainContent = styled.div`
-  flex: 1;
-`;
 
 export default Container;

@@ -6,7 +6,7 @@ import type { Authenticators } from '@adonisjs/auth/types'
  * Guest middleware is used to deny access to routes that should
  * be accessed by unauthenticated users.
  *
- * For example, the login page should not be accessible if the user
+ * For example, the connexion page should not be accessible if the user
  * is already logged-in
  */
 export default class GuestMiddleware {

@@ -1,0 +1,131 @@
+.answer-card-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: 90%;
+}
+
+.answer-card-star-button {
+    position: absolute;
+    left: -15px;
+    top: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.4rem 0.5rem 0.4rem;
+    background-color: #292b48;
+    z-index: 1000;
+    border: 1px solid #74C17C;
+    transform: translateY(-50%);
+    border-radius: 7px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #3a3b57;
+    }
+}
+
+.answer-card {
+    width: 100%;
+    background-color: #22233a;
+    border-radius: 10px;
+    border: 1px solid #606060;
+    padding: 1.2rem 1.4rem 0.5rem 1.4rem;
+    color: #e4e4e4;
+    position: relative;
+}
+
+.answer-card--solved {
+    border-color: #2CAD72;
+}
+
+.answer-card-resolution-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #292b48;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 3rem;
+    border-radius: 6px;
+    border: 0.5px solid #2cad72;
+}
+
+.answer-card-user-avatar {
+    background-color: red;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.answer-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.answer-card-main-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.answer-card-header {
+    display: flex;
+    margin-bottom: 2rem;
+    margin-top: 0.3rem;
+}
+
+.answer-card-header img {
+    margin-right: 0.5rem;
+}
+
+.answer-card-pseudo {
+    font-weight: 600;
+    margin: 0.1rem 0 0.3rem 0;
+}
+
+.answer-card-role {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.answer-card-infos {
+    display: flex;
+}
+
+.answer-card-date {
+    margin-right: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.answer-card-likes {
+    margin-right: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0;
+    margin-bottom: 0;
+    background: none;
+    border: none;
+    color: #E4E4E4;
+    cursor: pointer;
+}
+
+.answer-card-content {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    margin: 0;
+}

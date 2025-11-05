@@ -1,11 +1,13 @@
 import { DateTime } from 'luxon'
-import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import {BaseModel, column, hasMany} from '@adonisjs/lucid/orm'
+import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import Topic from "#models/topic";
-import type {HasMany} from "@adonisjs/lucid/types/relations";
-import Reply from "#models/reply";
+import type { HasMany } from '@adonisjs/lucid/types/relations'
+import hash from '@adonisjs/core/services/hash'
+import Topic from '#models/topic'
+import Reply from '#models/reply'
+import Like from '#models/like'
 
 export enum UserRole {
   DEVELOPER = 'developer',
@@ -37,11 +39,20 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare role: UserRole
 
+  @column()
+  declare bio: string | null
+
+  @column()
+  declare avatarUrl: string | null
+
   @hasMany(() => Topic)
   declare topics: HasMany<typeof Topic>
 
   @hasMany(() => Reply)
   declare replies: HasMany<typeof Reply>
+
+  @hasMany(() => Like)
+  declare likes: HasMany<typeof Like>
 
   @column({ serializeAs: null })
   declare password: string
@@ -51,4 +62,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+
+  static accessTokens = DbAccessTokensProvider.forModel(User)
 }

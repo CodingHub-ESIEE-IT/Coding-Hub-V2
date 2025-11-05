@@ -1,0 +1,10 @@
+.custom-tag {
+    background-color: #324CA8;
+    border-radius: 6px;
+    border: 0.5px solid #6C8CFF;
+    padding: 0.3rem 0.9rem;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    display: inline-block;
+    font-weight: 600;
+}

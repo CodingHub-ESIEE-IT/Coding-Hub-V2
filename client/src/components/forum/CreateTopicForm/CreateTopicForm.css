@@ -1,0 +1,72 @@
+.create-topic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.create-topic-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.create-topic-label {
+    font-size: 1rem;
+    color: #e4e4e4;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.create-topic-input {
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #1d1e35;
+    background-color: #22233a;
+    color: #e4e4e4;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.create-topic-input:focus {
+    outline: none;
+    border-color: #3f69ff;
+}
+
+.create-topic-button-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.create-topic-submit-button {
+    padding: 0.8rem 1.5rem;
+    background-color: #3f69ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-topic-submit-button:hover {
+    background-color: #2a50d5;
+}
+
+.create-topic-cancel-button {
+    padding: 0.8rem 1.5rem;
+    background-color: transparent;
+    color: #e4e4e4;
+    border: 1px solid #3f3f3f;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-topic-cancel-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}

@@ -1,0 +1,96 @@
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #22233a;
+  padding: 1.5rem;
+  margin-top: 1.2rem;
+  color: #ffffff;
+  width: 80%;
+}
+
+.edit-profile-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.edit-profile-input {
+  width: 45%;
+  padding: 10px;
+  border: 1px solid #606060;
+  border-radius: 4px;
+  background-color: #2f314f;
+  color: #ffffff;
+  outline: none;
+  resize: none;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.edit-form-label {
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.edit-form-small {
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chb-toast-container {
+  background-color: #282B48;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.9em;
+  gap: 10px;
+}
+
+.edit-avatar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #22233a;
+  padding: 1.5rem;
+  margin-top: 1.2rem;
+  color: #ffffff;
+  align-self: flex-start;
+  width: 25%;
+}
+
+.edit-avatar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+ }

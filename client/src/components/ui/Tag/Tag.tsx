@@ -1,22 +1,12 @@
 import React from 'react';
-import styled from "styled-components";
+import './Tag.css';
 
 const Tag = ({ children }: { children: React.ReactNode }) => {
   return (
-      <CustomTag>
+      <div className="custom-tag">
         {children}
-      </CustomTag>
+      </div>
   );
 };
-
-const CustomTag = styled.div`
-  background-color: #292b48;
-  border-radius: 6px;
-  border: 1px solid #606060;
-  padding: 0.4rem 0.8rem;
-  color: #e4e4e4;
-  font-size: 0.8rem;
-  display: inline-block;
-`;
 
 export default Tag;

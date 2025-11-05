@@ -1,0 +1,8 @@
+import vine from '@vinejs/vine'
+
+export const createReplyValidator = vine.compile(
+  vine.object({
+    content: vine.string().trim().minLength(3),
+    topicId: vine.number().positive(),
+  })
+)

@@ -1,0 +1,31 @@
+.custom-button {
+    background-color: #3f69ff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #2a50d5;
+}
+
+.custom-button:disabled,
+.custom-button.disabled {
+    background-color: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.custom-button:disabled:hover,
+.custom-button.disabled:hover {
+    background-color: #d1d5db;
+}

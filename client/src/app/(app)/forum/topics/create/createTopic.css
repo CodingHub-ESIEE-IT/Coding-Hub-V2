@@ -1,0 +1,30 @@
+.create-topic-container {
+    padding: 3rem 8rem;
+}
+
+.create-topic-title {
+    font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+    color: #e4e4e4;
+    margin: 0 0 0.6rem 0;
+}
+
+.create-topic-title span {
+    color: #3f69ff;
+}
+
+.create-topic-description {
+    font-size: 1.1rem;
+    color: #e4e4e4;
+    line-height: 1.5;
+    width: 75%;
+    margin-bottom: 1.8rem;
+    margin: 0 0 1.8rem 0;
+}
+
+.create-topic-separator {
+    height: 1px;
+    background-color: #e4e4e4;
+    margin-bottom: 2rem;
+    width: 100%;
+}

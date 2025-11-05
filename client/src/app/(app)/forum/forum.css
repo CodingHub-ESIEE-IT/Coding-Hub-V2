@@ -1,0 +1,29 @@
+.forum-container {
+    padding: 3rem;
+}
+
+.forum-title {
+    color: #e4e4e4;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.categories-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 1rem;
+}
+
+.users-list {
+    display: flex;
+    overflow-x: scroll;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.forum-section {
+    padding: 1.5rem 2rem;
+    background: #22233a;
+    border-radius: 10px;
+}

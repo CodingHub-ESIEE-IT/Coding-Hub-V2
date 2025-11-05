@@ -1,44 +1,46 @@
 'use client';
 import React from 'react';
-import styled from 'styled-components';
+import './Button.css';
 
-const Button = ({
-  buttonWidth = 'auto',
-  text,
-  onClick,
-  margin = '0px',
-}: {
+type ButtonProps = {
   buttonWidth?: string;
-  text: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  text?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  fontSize?: string;
   margin?: string;
-}) => {
-  return (
-    <CustomButton $width={buttonWidth} onClick={onClick} $margin={margin}>
-      {text}
-    </CustomButton>
-  );
+  padding?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  children?: React.ReactNode;
 };
 
-const CustomButton = styled.button<{ $width: string; $margin: string }>`
-  background-color: #717eff;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.15rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin: ${({ $margin }) => $margin};
-  outline: none;
-  border-radius: 8px;
-  border: none;
-  width: ${(props) => props.$width};
-
-  &:hover {
-    background-color: #5d5de4;
-  }
-`;
+const Button: React.FC<ButtonProps> = ({
+  buttonWidth = 'fit-content',
+  text,
+  onClick = () => {},
+  fontSize = '1rem',
+  margin = '0px',
+  padding = '16px 32px',
+  type = 'button',
+  disabled = false,
+  children,
+}) => {
+  return (
+    <button
+      className="custom-button"
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      style={{
+        width: buttonWidth,
+        margin: margin,
+        fontSize: fontSize,
+        padding: padding,
+      }}
+    >
+      {text ?? children}
+    </button>
+  );
+};
 
 export default Button;

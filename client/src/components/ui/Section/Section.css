@@ -1,0 +1,12 @@
+.section-container {
+    padding: 1.5rem 2rem;
+    background: #22233a;
+    border-radius: 10px;
+}
+
+.section-title {
+    color: #e4e4e4;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}

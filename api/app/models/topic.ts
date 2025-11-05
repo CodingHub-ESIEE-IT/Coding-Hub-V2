@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
-import {BaseModel, belongsTo, column, hasMany, manyToMany} from '@adonisjs/lucid/orm'
-import type {BelongsTo, HasMany, ManyToMany} from "@adonisjs/lucid/types/relations";
-import Reply from "#models/reply";
-import Category from "#models/category";
-import User from "#models/user";
+import { BaseModel, beforeSave, belongsTo, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
+import Reply from '#models/reply'
+import Category from '#models/category'
+import User from '#models/user'
+import string from '@adonisjs/core/helpers/string'
 
 export enum TopicStatus {
   DRAFT = 'draft',
@@ -21,6 +22,9 @@ export default class Topic extends BaseModel {
 
   @column()
   declare content: string
+
+  @column()
+  declare slug: string
 
   @column()
   declare status: TopicStatus
@@ -45,4 +49,20 @@ export default class Topic extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @beforeSave()
+  static async createSlug(topic: Topic) {
+    if (!topic.slug || topic.$dirty.slug) {
+      topic.slug = string.slug(topic.title).toLocaleLowerCase()
+
+      const existingTopic = await Topic.query()
+        .where('slug', topic.slug)
+        .whereNot('id', topic.id || 0)
+        .first()
+
+      if (existingTopic) {
+        topic.slug = `${topic.slug}-${Date.now().toString().slice(-6)}`
+      }
+    }
+  }
 }

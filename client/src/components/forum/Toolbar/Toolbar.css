@@ -1,0 +1,138 @@
+.toolbar-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #22233a;
+    border: 1px solid #1d1e35;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+
+.toolbar-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.toolbar-separator {
+    height: 1px;
+    background-color: #1d1e35;
+    width: 100%;
+}
+
+.toolbar-group {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.toolbar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #e4e4e4;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0.5rem;
+}
+
+.toolbar-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toolbar-button--active {
+    background: #3f69ff !important;
+    color: #ffffff;
+}
+
+.toolbar-button--active:hover {
+    background-color: #3f69ff !important;
+}
+
+.toolbar-button--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background-color: #3f3f3f;
+    margin: 0 0.5rem;
+}
+
+.toolbar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-language-select-container {
+    background-color: #22233a;
+    border: 1px solid #1d1e35;
+    border-radius: 6px;
+    padding: 1rem;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.toolbar-language-select-title {
+    margin: 0 0 0.75rem 0;
+    color: #e4e4e4;
+    font-size: 1rem;
+}
+
+.toolbar-language-select-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.toolbar-language-option {
+    background-color: #1a1b2e;
+    color: #e4e4e4;
+    border: 1px solid #3f3f3f;
+    border-radius: 4px;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toolbar-language-option:hover {
+    background-color: #3f69ff;
+    color: white;
+}
+
+.toolbar-close-button {
+    background-color: transparent;
+    color: #e4e4e4;
+    border: 1px solid #3f3f3f;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toolbar-close-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

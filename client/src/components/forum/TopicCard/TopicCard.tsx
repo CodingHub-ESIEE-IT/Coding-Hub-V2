@@ -1,147 +1,70 @@
-'use client';
-import React from 'react';
-import styled from 'styled-components';
+'use client'
 
-const TopicCard = ({ topicSolved = 'false' }: { topicSolved?: string }) => {
+import React, { useEffect, useState } from 'react';
+import './TopicCard.css';
+import {Topic} from "@/types/topic";
+import { formatDistanceToNow } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import {Category} from "@/types/category";
+import Link from "next/link";
+import Tag from "@/components/ui/Tag/Tag";
+
+const TopicCard = ({ topic }: { topic: Topic }) => {
+  const [resolvedDate, setResolvedDate] = useState<string | null>(null);
+  const [updatedDistance, setUpdatedDistance] = useState<string>('');
+  const [createdDate, setCreatedDate] = useState<string>('');
+
+  useEffect(() => {
+    if (topic.resolveAt) {
+      setResolvedDate(new Date(topic.resolveAt).toLocaleDateString('fr-FR'));
+    }
+    setUpdatedDistance(
+      formatDistanceToNow(new Date(topic.updatedAt), {
+        addSuffix: true,
+        locale: fr,
+      })
+    );
+    setCreatedDate(new Date(topic.createdAt).toLocaleDateString('fr-FR'));
+  }, [topic]);
+
   return (
-    <CardContainer $solved={topicSolved}>
-      {topicSolved === 'true' && (
-        <ResolutionBadge>Sujet résolu le 18/02/2024</ResolutionBadge>
-      )}
-      <Header>
-        <LeftHeader>
-          <CardLogoContainer />
-          <div>
-            <Title>Bug d’affichage des erreurs PHP</Title>
-            <TextDate>Dernière activité il y a 5 jours</TextDate>
+      <Link href={`/forum/topics/${topic.id}`}>
+        <div className={`card-container ${topic.resolveAt ? 'solved' : ''}`}>
+          {topic.resolveAt !== null && (
+              <div className="resolution-badge">
+                Sujet résolu le{' '}
+                {resolvedDate || ''}
+              </div>
+          )}
+          <div className="header">
+            <div className="left-header">
+              <div className="card-logo-container"/>
+              <div>
+                <h3 className="title">{topic.title}</h3>
+                <p className="text-date">
+                  Dernière activité{' '}
+                  {updatedDistance}
+                </p>
+              </div>
+            </div>
+            <div className="card-categories">
+              {topic.categories.map((category: Category, index: React.Key | null | undefined) => (
+                  <Tag key={index}>{category.name}</Tag>
+              ))}
+            </div>
           </div>
-        </LeftHeader>
-        <CategoryTag>PHP</CategoryTag>
-      </Header>
-      <Description>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, atque
-        deleniti, dolorem eos eveniet exercitationem fugiat
-      </Description>
-      <CardFooter>
-        <CardLeftFooter>
-          <Author>Axel Demorest</Author>
-          <p>-</p>
-          <CreatedDate>Crée le 12/03/2025</CreatedDate>
-        </CardLeftFooter>
-      </CardFooter>
-    </CardContainer>
+          <div className="card-footer">
+            <div className="card-left-footer">
+              <span className="author">{topic.user.username}</span>
+              <p className="author-separator">-</p>
+              <p className="created-date">
+                Créé le {createdDate}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Link>
   );
 };
-
-const CardContainer = styled.div<{ $solved: string }>`
-  background-color: #2f314f;
-  border-radius: 8px;
-  border: 1px solid
-    ${(props) => (props.$solved === 'true' ? '#2CAD72' : '#606060')};
-  padding: 20px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 1.5rem;
-
-  &:hover {
-    transform: translateX(-5px);
-  }
-`;
-
-const ResolutionBadge = styled.div`
-  position: absolute;
-  top: -15px;
-  right: 140px;
-  background-color: #2cad72;
-  color: white;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-`;
-
-const LeftHeader = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Title = styled.h3`
-  color: #e4e4e4;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-`;
-
-const Description = styled.p`
-  color: #e4e4e4;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-`;
-
-const CardLogoContainer = styled.div`
-  background-color: #22233a;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 0.8rem;
-`;
-
-const TextDate = styled.p`
-  color: #bdbdbd;
-  font-size: 0.8rem;
-  font-weight: 500;
-`;
-
-const CardFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-`;
-
-const Author = styled.span`
-  color: #32ca9a;
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-right: 0.5rem;
-`;
-
-const CreatedDate = styled.p`
-  color: #bdbdbd;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-left: 0.5rem;
-`;
-
-const CardLeftFooter = styled.div`
-  display: flex;
-  align-items: center;
-
-  p {
-    color: #bdbdbd;
-  }
-`;
-
-const CategoryTag = styled.div`
-  background-color: #292b48;
-  border: 0.9px solid #606060;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.3rem 1rem;
-  border-radius: 5px;
-`;
 
 export default TopicCard;
