@@ -1,0 +1,276 @@
+/* Home.module.css */
+
+/* --- Layout Général --- */
+.container {
+    color: #fff;
+    min-height: 100vh;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+.mainWrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Section 1: Hero --- */
+.heroSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5rem;
+    padding-bottom: 8rem;
+    position: relative;
+    gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .heroSection {
+        flex-direction: row;
+        padding-top: 8rem;
+    }
+}
+
+/* --- Colonne Texte --- */
+.textColumn {
+    flex: 1;
+    z-index: 10;
+    max-width: 600px;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .title { font-size: 4.5rem; }
+}
+
+.highlight {
+    color: #3b82f6; /* Bleu Coding Hub */
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Le soulignement épais sous "Hub" */
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(59, 130, 246, 0.3);
+    z-index: -1;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #e2e8f0;
+}
+
+.checkIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+}
+
+.ctaButton {
+    background-color: #5b63d3;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -5px rgba(91, 99, 211, 0.4);
+    transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+    background-color: #4a51b0;
+}
+
+/* --- Colonne Visuelle (Droite) --- */
+.visualColumn {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+}
+
+/* Background flou derrière le code */
+.glowEffect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Cercles orbitaux SVG */
+.orbitSvg {
+    position: absolute;
+    width: 130%;
+    height: 130%;
+    opacity: 0.2;
+    pointer-events: none;
+    animation: spin 60s linear infinite; /* Animation CSS simple pour la rotation continue */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- Fenêtre de Code --- */
+.codeWindow {
+    background-color: #1e1e2e;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    font-family: 'Consolas', 'Monaco', monospace; /* Police monospace */
+}
+
+.codeHeader {
+    background-color: #2a2b3d;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+.copyWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.codeBody {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #a6accd;
+}
+
+.codeLine {
+    display: flex;
+}
+
+.lineNumber {
+    width: 2rem;
+    color: #4b5563;
+    text-align: right;
+    margin-right: 1rem;
+    user-select: none;
+}
+
+/* Syntaxe Highlighting (Couleurs manuelles pour imiter l'image) */
+.kwd { color: #f472b6; } /* Rose (def, for...) */
+.func { color: #60a5fa; } /* Bleu (noms de fonctions) */
+.str { color: #4ade80; } /* Vert (Strings) */
+.num { color: #facc15; } /* Jaune */
+.indent { padding-left: 1.5rem; }
+
+/* --- Icônes Flottantes --- */
+.techIcon {
+    position: absolute;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 0.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    z-index: 6;
+}
+
+/* --- Sections supplémentaires --- */
+.sectionTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .cardsGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+    background-color: #1a1b3a;
+    border: 1px solid #2d3748;
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    border-color: #3b82f6;
+}
+
+.ctaSection {
+    text-align: center;
+    padding: 6rem 1rem;
+    background: linear-gradient(to bottom, #131426, #0f172a);
+}
+
+.ctaTitle {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}

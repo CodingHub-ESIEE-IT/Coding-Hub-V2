@@ -40,7 +40,7 @@ export default class TopicsController {
 
     const topic = await Topic.create({
       ...topicData,
-      userId: 2,
+      userId: 4,
     })
 
     if (payload.categoryIds && payload.categoryIds.length > 0) {
