@@ -14,7 +14,7 @@ export default class extends BaseSchema {
         .notNullable()
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE').notNullable()
       table.timestamp('resolve_at', { useTz: true }).nullable()
-      table.timestamp('created_at', { useTz: true }).notNullable()
+      table.timestamp('created_at', { useTz: true }).notNullable().defaultTo(this.now())
       table.timestamp('updated_at', { useTz: true }).nullable()
     })
   }
