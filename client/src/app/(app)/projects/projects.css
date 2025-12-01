@@ -1,0 +1,106 @@
+.projects-page {
+    background-color: #1e1e2f;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.projects-feed {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: #2a2a40;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.post-date {
+    font-size: 0.8rem;
+    color: #a0a0b0;
+}
+
+.more-options {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.card-body {
+    margin-bottom: 1rem;
+}
+
+.post-text {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.post-image-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.interaction-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #e0e0e0;
+    transition: color 0.2s;
+    font-size: 0.9rem;
+}
+
+.interaction-item:hover {
+    color: #ffffff;
+}
