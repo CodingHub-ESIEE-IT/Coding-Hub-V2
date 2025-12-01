@@ -56,68 +56,118 @@ const MOCK_PROJECTS = [
     }
 ];
 
+const MOCK_CLASSES = [
+    { id: 1, name: 'Dev Web', count: '12 Projects' },
+    { id: 2, name: 'Data Science', count: '8 Projects' },
+    { id: 3, name: 'Mobile Apps', count: '5 Projects' },
+];
+
+const MOCK_PROFESSORS = [
+    { id: 1, name: 'Mr. Smith', avatar: 'https://placehold.co/30x30/png' },
+    { id: 2, name: 'Mme. Dupont', avatar: 'https://placehold.co/30x30/png' },
+    { id: 3, name: 'Dr. House', avatar: 'https://placehold.co/30x30/png' },
+];
+
 const Projects = async () => {
     const user = await getCurrentUser();
     if (!user) redirect('/connexion');
 
     return (
         <div className="projects-page">
-            <div className="projects-feed">
-                {MOCK_PROJECTS.map((project) => (
-                    <div key={project.id} className="project-card">
-                        <div className="card-header">
-                            <div className="author-info">
-                                <Image
-                                    src={project.author.avatar}
-                                    alt={project.author.name}
-                                    width={40}
-                                    height={40}
-                                    className="author-avatar"
-                                />
-                                <div className="author-details">
-                                    <span className="author-name">{project.author.name}</span>
-                                    <span className="post-date">{project.author.date}</span>
+            <div className="projects-container">
+                {/* Main Feed Column */}
+                <div className="projects-feed-container">
+                    <div className="projects-feed">
+                        {MOCK_PROJECTS.map((project) => (
+                            <div key={project.id} className="project-card">
+                                <div className="card-header">
+                                    <div className="author-info">
+                                        <Image
+                                            src={project.author.avatar}
+                                            alt={project.author.name}
+                                            width={40}
+                                            height={40}
+                                            className="author-avatar"
+                                        />
+                                        <div className="author-details">
+                                            <span className="author-name">{project.author.name}</span>
+                                            <span className="post-date">{project.author.date}</span>
+                                        </div>
+                                    </div>
+                                    <button className="more-options">
+                                        <MoreHorizontal size={20} color="#fff" />
+                                    </button>
+                                </div>
+
+                                <div className="card-body">
+                                    <p className="post-text">{project.content.text}</p>
+                                    <div className="post-image-container">
+                                        <Image
+                                            src={project.content.image}
+                                            alt="Project"
+                                            width={600}
+                                            height={400}
+                                            className="post-image"
+                                            unoptimized
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="card-footer">
+                                    <div className="interaction-item">
+                                        <MessageCircle size={20} />
+                                        <span>{project.stats.comments}</span>
+                                    </div>
+                                    <div className="interaction-item">
+                                        <Heart size={20} />
+                                        <span>{project.stats.likes}</span>
+                                    </div>
+                                    <div className="interaction-item">
+                                        <Share2 size={20} />
+                                    </div>
+                                    <div className="interaction-item">
+                                        <Bookmark size={20} />
+                                    </div>
                                 </div>
                             </div>
-                            <button className="more-options">
-                                <MoreHorizontal size={20} color="#fff" />
-                            </button>
-                        </div>
-
-                        <div className="card-body">
-                            <p className="post-text">{project.content.text}</p>
-                            <div className="post-image-container">
-                                <Image
-                                    src={project.content.image}
-                                    alt="Project"
-                                    width={600}
-                                    height={400}
-                                    className="post-image"
-                                    unoptimized
-                                />
-                            </div>
-                        </div>
-
-                        <div className="card-footer">
-                            <div className="interaction-item">
-                                <MessageCircle size={20} />
-                                <span>{project.stats.comments} Comments</span>
-                            </div>
-                            <div className="interaction-item">
-                                <Heart size={20} />
-                                <span>{project.stats.likes} Likes</span>
-                            </div>
-                            <div className="interaction-item">
-                                <Share2 size={20} />
-                                <span>Share</span>
-                            </div>
-                            <div className="interaction-item">
-                                <Bookmark size={20} />
-                                <span>Saved</span>
-                            </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
+                </div>
+
+                {/* Sidebar Column */}
+                <div className="projects-sidebar">
+                    <div className="sidebar-section">
+                        <h3 className="sidebar-title">Vos Classes</h3>
+                        <ul className="sidebar-list">
+                            {MOCK_CLASSES.map((cls) => (
+                                <li key={cls.id} className="sidebar-item">
+                                    <span className="item-name">{cls.name}</span>
+                                    <span className="item-count">{cls.count}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="sidebar-section">
+                        <h3 className="sidebar-title">Professeurs</h3>
+                        <ul className="sidebar-list">
+                            {MOCK_PROFESSORS.map((prof) => (
+                                <li key={prof.id} className="sidebar-item">
+                                    <div className="prof-info">
+                                        <Image
+                                            src={prof.avatar}
+                                            alt={prof.name}
+                                            width={30}
+                                            height={30}
+                                            className="prof-avatar"
+                                        />
+                                        <span className="item-name">{prof.name}</span>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     );
