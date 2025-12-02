@@ -20,8 +20,7 @@ export default class extends BaseSchema {
         .inTable('replies')
         .onDelete('CASCADE')
         .notNullable()
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamps(true, true)
     })
   }
 

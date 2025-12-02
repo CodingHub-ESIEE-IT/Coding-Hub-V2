@@ -9,8 +9,7 @@ export default class extends BaseSchema {
       table.integer('topic_id').unsigned().references('topics.id').onDelete('CASCADE').notNullable()
       table.integer('category_id').unsigned().references('categories.id').onDelete('CASCADE').notNullable()
       table.unique(['topic_id', 'category_id'])
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamps(true, true)
     })
   }
 
