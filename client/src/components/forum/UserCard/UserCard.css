@@ -1,7 +1,7 @@
 .user-card-container {
-    background-color: #2f314f;
+    background-color: var(--bg-card);
     border-radius: 8px;
-    border: 1px solid #606060;
+    border: 1px solid var(--border-color);
     padding: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -16,38 +16,41 @@
 
 .user-card-container:hover {
     transform: translateY(-5px);
+    border-color: var(--primary);
 }
 
 .user-card-title {
-    color: #e4e4e4;
+    color: var(--text-main);
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
 }
 
 .user-card-pseudo {
-    color: #aaaaaa;
+    color: var(--text-muted);
     font-size: 0.75rem;
     font-weight: 500;
     margin: 0;
 }
 
 .user-card-logo-container {
-    background-color: #22233a;
+    background-color: var(--bg-dark);
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--border-color);
 }
 
 .user-card-tag {
-    border-radius: 3px;
-    background-color: #32ca9a;
-    color: #fff;
+    border-radius: 12px;
+    background-color: rgba(63, 105, 255, 0.15);
+    color: #8fa8ff;
+    border: 1px solid rgba(63, 105, 255, 0.3);
     font-size: 0.75rem;
     font-weight: 600;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.8rem;
     margin-top: 0.4rem;
 }

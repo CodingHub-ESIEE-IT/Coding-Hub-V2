@@ -6,7 +6,7 @@ export default class RepliesController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {}
+  async index({ }: HttpContext) { }
 
   /**
    * Handle form submission for the create action
@@ -17,7 +17,7 @@ export default class RepliesController {
 
     const reply = await Reply.create({
       content: payload.content,
-      userId: 2,
+      userId: 4,
       topicId: payload.topicId,
     })
 
@@ -30,17 +30,17 @@ export default class RepliesController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params }: HttpContext) { }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request }: HttpContext) { }
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params }: HttpContext) { }
 
   /**
    * Toggle the best answer for a reply

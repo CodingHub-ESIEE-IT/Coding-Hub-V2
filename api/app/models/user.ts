@@ -8,6 +8,7 @@ import hash from '@adonisjs/core/services/hash'
 import Topic from '#models/topic'
 import Reply from '#models/reply'
 import Like from '#models/like'
+import Project from '#models/project'
 
 export enum UserRole {
   DEVELOPER = 'developer',
@@ -53,6 +54,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @hasMany(() => Like)
   declare likes: HasMany<typeof Like>
+
+  @hasMany(() => Project)
+  declare projects: HasMany<typeof Project>
 
   @column({ serializeAs: null })
   declare password: string

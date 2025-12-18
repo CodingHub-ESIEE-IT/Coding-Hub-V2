@@ -11,10 +11,10 @@ import { User } from '@/types/user';
 
 import EditProfileForm from '@/components/Profile/EditProfileForm/EditProfileForm';
 
-import { getCurrentUser } from '@/lib/utils/auth';
-import { getTopicsByUser } from '@/lib/utils/topic';
-import {editAvatarAction, editUserAction} from '@/lib/actions/user.action';
-import EditAvatar from "@/components/Profile/EditAvatar/EditAvatar";
+import { getCurrentUser } from '@/lib/utils/api/auth';
+import { getTopicsByUser } from '@/lib/utils/api/topic';
+import { editAvatarAction, editUserAction } from '@/lib/actions/user.action';
+import ProfileSidebar from '@/components/Profile/ProfileSidebar/ProfileSidebar';
 
 type UserFormField = keyof User;
 
@@ -66,55 +66,26 @@ const EditProfile = async () => {
   const { data } = await getTopicsByUser(user?.id ?? 0);
 
   return (
-    <div>
-      <div className="profile-header">
-        <div className="actions">
-          <button className="actions-button">Modifier le profil</button>
-          <button className="actions-button">Paramètres</button>
-        </div>
-        <div className="profile-info">
-          <div className={'profile-overview'}>
-            <Image
-              className="profile-picture"
-              src={logo}
-              alt={'Photo de profil'}
-            />
-            <div>
-              <h1 className="profile-username">
-                {user.firstName} {user.lastName}
-              </h1>
-              <p className="profile-pseudo">@{user.username}</p>
-            </div>
-          </div>
-          <div className="profile-stats">
-            <div className="stat">
-              <span className="stat-number">{data.length}</span>
-              <span className="stat-label">Sujets</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number">128</span>
-              <span className="stat-label">Abonnements</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number">256</span>
-              <span className="stat-label">Abonnés</span>
-            </div>
-          </div>
-        </div>
-        <div className={'profile-bio'}>
-          <h2>Biographie</h2>
-          <p>{user.bio}</p>
-        </div>
-      </div>
-      <div className="profile-list-topics">
-        <h2>Éditer</h2>
-        <div className={"edit-profile-container"}>
-          <EditProfileForm
+    <div className="profile-container">
+      <ProfileSidebar
+        user={user}
+        topicCount={data.length}
+        avatarEditAction={editAvatarAction}
+      />
+
+      <div className="profile-main-content">
+        <h2 className="section-title">Éditer mon profil</h2>
+        <div className="edit-profile-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+
+          <div style={{ backgroundColor: 'var(--bg-card)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+            <h3 style={{ marginBottom: '1.5rem', fontSize: '1.2rem' }}>Informations personnelles</h3>
+            <EditProfileForm
               userEditAction={editUserAction}
               inputs={inputs}
               user={user}
-          />
-          <EditAvatar avatarUrl={user.avatarUrl} avatarEditAction={editAvatarAction} />
+            />
+          </div>
+
         </div>
       </div>
     </div>

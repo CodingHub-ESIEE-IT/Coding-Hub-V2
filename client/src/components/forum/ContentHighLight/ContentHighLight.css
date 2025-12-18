@@ -1,5 +1,5 @@
 .topic-content {
-    color: #e4e4e4;
+    color: var(--text-main);
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -11,7 +11,7 @@
 .topic-content h2 {
     font-size: 1.5rem;
     margin: 1rem 0 0.5rem;
-    color: #e4e4e4;
+    color: var(--text-main);
 }
 
 .topic-content ul,
@@ -25,21 +25,22 @@
 }
 
 .topic-content blockquote {
-    border-left: 3px solid #3f69ff;
+    border-left: 3px solid var(--primary);
     padding-left: 1rem;
     margin-left: 0;
     margin-right: 0;
     font-style: italic;
-    color: #c4c4c4;
+    color: var(--text-muted);
 }
 
 .topic-content pre {
-    background-color: #1a1b2e;
+    background-color: #0d0f17;
+    /* Darker than card for code */
     border-radius: 8px;
     margin: 1rem 0;
     padding: 1rem;
     position: relative;
-    border: 1px solid #2d2e4a;
+    border: 1px solid var(--border-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     overflow-x: scroll;
 }
@@ -55,8 +56,8 @@
 }
 
 .topic-content code:not(pre code) {
-    background-color: #2d2e4a;
-    color: #e4e4e4;
+    background-color: rgba(63, 105, 255, 0.1);
+    color: var(--primary);
     padding: 0.2em 0.4em;
     border-radius: 4px;
     font-family: 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
@@ -64,7 +65,7 @@
 }
 
 .topic-content a {
-    color: #3f69ff;
+    color: var(--primary);
     text-decoration: none;
     transition: color 0.2s;
 }
@@ -76,5 +77,5 @@
 
 .topic-content .hljs {
     background: transparent !important;
-    color: #e4e4e4 !important;
+    color: var(--text-main) !important;
 }

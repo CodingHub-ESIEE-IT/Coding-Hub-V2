@@ -11,18 +11,20 @@ type ButtonProps = {
   padding?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  textAlign?: 'left' | 'center' | 'right';
   children?: React.ReactNode;
 };
 
 const Button: React.FC<ButtonProps> = ({
   buttonWidth = 'fit-content',
   text,
-  onClick = () => {},
+  onClick = () => { },
   fontSize = '1rem',
   margin = '0px',
   padding = '16px 32px',
   type = 'button',
   disabled = false,
+  textAlign = 'center',
   children,
 }) => {
   return (
@@ -36,6 +38,7 @@ const Button: React.FC<ButtonProps> = ({
         margin: margin,
         fontSize: fontSize,
         padding: padding,
+        textAlign: textAlign,
       }}
     >
       {text ?? children}

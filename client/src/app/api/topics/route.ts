@@ -1,5 +1,5 @@
-import {NextRequest, NextResponse} from "next/server";
-import {getAuthToken} from "@/lib/utils/auth";
+import { NextRequest, NextResponse } from "next/server";
+import { getAuthToken } from "@/lib/utils/api/auth";
 
 const ADONIS_API_URL = process.env.ADONIS_API_URL;
 
@@ -30,8 +30,8 @@ export async function GET(request: NextRequest) {
 
     if (!response.ok) {
       return NextResponse.json(
-          { error: 'Erreur lors de la récupération des données' },
-          { status: response.status }
+        { error: 'Erreur lors de la récupération des données' },
+        { status: response.status }
       );
     }
 
@@ -41,10 +41,10 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Erreur:', error);
     return NextResponse.json(
-        { error: 'Erreur serveur' },
-        { status: 500 }
+      { error: 'Erreur serveur' },
+      { status: 500 }
     );
   }
 }
 
-export async function POST() {}
+export async function POST() { }

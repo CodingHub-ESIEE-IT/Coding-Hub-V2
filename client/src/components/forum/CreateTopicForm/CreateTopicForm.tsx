@@ -1,20 +1,20 @@
 'use client';
 
-import React, {useState, useRef, useActionState, useCallback} from 'react';
+import React, { useState, useRef, useActionState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import './CreateTopicForm.css';
 import { StylesConfig } from 'react-select';
 import TipTap from '@/components/forum/TipTap/TipTap';
-import {CategoryOption} from "@/types/category";
-import {ActionResponse} from "@/types/action";
+import { CategoryOption } from "@/types/category";
+import { ActionResponse } from "@/types/action";
 
 const ReactSelect = dynamic(() => import('react-select'), { ssr: false });
 
 interface CreateTopicFormProps {
   categories: CategoryOption[];
   topicAction: (
-      prevState: ActionResponse | null,
-      formData: FormData
+    prevState: ActionResponse | null,
+    formData: FormData
   ) => Promise<ActionResponse>;
 }
 
@@ -75,12 +75,12 @@ const CreateTopicForm: React.FC<CreateTopicFormProps> = ({
       state: { isFocused: boolean },
     ) => ({
       ...provided,
-      backgroundColor: '#22233a',
+      backgroundColor: '#161824',
       borderWidth: '1px',
-      borderColor: state.isFocused ? '#3f69ff' : '#1d1e35',
+      borderColor: state.isFocused ? '#3f69ff' : 'rgba(255, 255, 255, 0.08)',
       boxShadow: state.isFocused ? '0 0 0 1px #3f69ff' : 'none',
       '&:hover': {
-        borderColor: state.isFocused ? '#3f69ff' : '#1d1e35',
+        borderColor: state.isFocused ? '#3f69ff' : 'rgba(255, 255, 255, 0.08)',
       },
       borderRadius: '6px',
       padding: '0.2rem',
@@ -88,8 +88,8 @@ const CreateTopicForm: React.FC<CreateTopicFormProps> = ({
     }),
     menu: (provided: Record<string, unknown>) => ({
       ...provided,
-      backgroundColor: '#22233a',
-      border: '1px solid #1d1e35',
+      backgroundColor: '#161824',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
       borderRadius: '6px',
       overflow: 'hidden',
     }),
@@ -102,7 +102,7 @@ const CreateTopicForm: React.FC<CreateTopicFormProps> = ({
         ? '#3f69ff'
         : state.isFocused
           ? 'rgba(63, 105, 255, 0.2)'
-          : '#22233a',
+          : '#161824',
       color: '#e4e4e4',
       cursor: 'pointer',
       '&:active': {
@@ -155,15 +155,14 @@ const CreateTopicForm: React.FC<CreateTopicFormProps> = ({
     <form className="create-topic-form" action={action}>
       <div className="create-topic-form-group">
         {
-            state && state.message && (
-                <div
-                className={`create-topic-feedback ${
-                    state.success ? 'success' : 'error'
+          state && state.message && (
+            <div
+              className={`create-topic-feedback ${state.success ? 'success' : 'error'
                 }`}
-                >
-                {state.message}
-                </div>
-            )
+            >
+              {state.message}
+            </div>
+          )
         }
         <label className="create-topic-label" htmlFor="title">
           Titre du sujet

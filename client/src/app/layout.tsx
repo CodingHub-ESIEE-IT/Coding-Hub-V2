@@ -3,7 +3,7 @@ import React from 'react';
 import { Montserrat } from 'next/font/google';
 import '../styles/globals.css';
 import AuthChecker from '@/components/auth/AuthChecker/AuthChecker';
-import { getCurrentUser } from '@/lib/utils/auth';
+import { getCurrentUser } from '@/lib/utils/api/auth';
 
 const montserrat = Montserrat({
   subsets: ['latin'],

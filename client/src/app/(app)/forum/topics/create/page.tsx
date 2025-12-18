@@ -1,8 +1,8 @@
 import CreateTopicForm from '@/components/forum/CreateTopicForm/CreateTopicForm'
 import { createTopicAction } from '@/lib/actions/topic.action'
 import './createTopic.css'
-import {getCategories} from "@/lib/utils/category";
-import {Category, CategoryOption} from "@/types/category";
+import { getCategories } from "@/lib/utils/api/category";
+import { Category, CategoryOption } from "@/types/category";
 
 /* const categoryOptions: CategoryOption[] = [
   { value: 'frontend', label: 'Frontend' },
@@ -16,28 +16,28 @@ import {Category, CategoryOption} from "@/types/category";
 export default async function CreateTopicPage() {
   const categories = await getCategories();
   const categoryOptions: CategoryOption[] = categories.map(
-      (category: Category) => ({
-        value: category.id,
-        label: category.name
-      })
+    (category: Category) => ({
+      value: category.id,
+      label: category.name
+    })
   );
 
   return (
-      <div className="create-topic-container">
-        <h1 className="create-topic-title">
-          Créer un <span>sujet</span>
-        </h1>
-        <p className="create-topic-description">
-          Assurez-vous de formuler votre question de manière concise et claire
-          pour faciliter la compréhension des autres membres et obtenir des
-          réponses pertinentes.
-        </p>
-        <div className="create-topic-separator" />
+    <div className="create-topic-container">
+      <h1 className="create-topic-title">
+        Créer un <span>sujet</span>
+      </h1>
+      <p className="create-topic-description">
+        Assurez-vous de formuler votre question de manière concise et claire
+        pour faciliter la compréhension des autres membres et obtenir des
+        réponses pertinentes.
+      </p>
+      <div className="create-topic-separator" />
 
-        <CreateTopicForm
-            categories={categoryOptions}
-            topicAction={createTopicAction}
-        />
-      </div>
+      <CreateTopicForm
+        categories={categoryOptions}
+        topicAction={createTopicAction}
+      />
+    </div>
   )
 }

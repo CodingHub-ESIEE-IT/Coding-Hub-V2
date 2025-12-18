@@ -5,12 +5,14 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-weight: 600;
     cursor: pointer;
     outline: none;
     border-radius: 6px;
     border: none;
     transition: background-color 0.3s;
+    z-index: 1;
 }
 
 .custom-button:hover {

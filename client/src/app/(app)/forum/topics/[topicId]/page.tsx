@@ -1,7 +1,7 @@
-import { getOneTopic } from '@/lib/utils/topic';
+import { getOneTopic } from '@/lib/utils/api/topic';
 import { Topic } from '@/types/topic';
 import TopicDetails from "@/components/forum/TopicDetails/TopicDetails";
-import {getCurrentUser} from "@/lib/utils/auth";
+import { getCurrentUser } from "@/lib/utils/api/auth";
 
 interface TopicPageProps {
   params: Promise<{ topicId: string }>;

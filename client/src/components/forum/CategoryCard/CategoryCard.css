@@ -1,50 +1,126 @@
 .category-card-container {
-    background-color: #2f314f;
-    border-radius: 8px;
-    border: 1px solid #606060;
-    padding: 20px;
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Subtle glow effect using pseudo-element */
+.category-card-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.06),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .category-card-container:hover {
     transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.category-card-container:hover::before {
+    opacity: 1;
+}
+
+/* Accent top border or glow */
+.category-card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent-color, var(--primary));
+    opacity: 0.7;
+    transition: height 0.3s ease;
+}
+
+.category-card-container:hover .category-card-glow {
+    height: 6px;
+    opacity: 1;
+    box-shadow: 0 0 20px var(--accent-color);
 }
 
 .category-card-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-}
-
-.category-card-title {
-    color: #e4e4e4;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.category-card-description {
-    color: #aaaaaa;
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 1.5;
-    margin: 0;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .category-card-logo-container {
-    background-color: #22233a;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 5px;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0.8rem;
+    margin-right: 1rem;
+    color: var(--accent-color, #fff);
+    transition: all 0.3s ease;
 }
 
-.category-card-logo {
-    width: 1.6rem;
-    height: 1.6rem;
-    border-radius: 5px;
+.category-card-container:hover .category-card-logo-container {
+    background: var(--accent-color);
+    color: white;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.category-card-title {
+    color: var(--text-main);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    font-family: var(--font-montserrat), sans-serif;
+}
+
+.category-card-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.category-card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+}
+
+.view-topics-link {
+    color: var(--accent-color, #3b82f6);
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s ease;
+}
+
+.category-card-container:hover .view-topics-link {
+    gap: 0.8rem;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }

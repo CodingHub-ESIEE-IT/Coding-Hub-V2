@@ -15,9 +15,13 @@ const RepliesController = () => import('#controllers/replies_controller')
 const CategoriesController = () => import('#controllers/categories_controller')
 const TopicsController = () => import('#controllers/topics_controller')
 const UsersController = () => import('#controllers/users_controller')
+const ProjectsController = () => import('#controllers/projects_controller')
+const AvatarsController = () => import('#controllers/avatar_controller')
 
 router.post('/register', [AuthController, 'register']).as('auth.register').prefix('api')
 router.post('/login', [AuthController, 'login']).as('auth.connexion').prefix('api')
+
+router.get('/users/latest', [UsersController, 'latest']).prefix('api')
 
 router
   .group(() => {
@@ -25,13 +29,15 @@ router
     router.resource('categories', CategoriesController).apiOnly()
     router.resource('replies', RepliesController).apiOnly()
     router.resource('likes', LikesController).apiOnly()
+    router.resource('projects', ProjectsController).apiOnly()
 
     router.patch('/users/:id', [UsersController, 'update'])
 
-    router.get('/avatars', '#controllers/avatars_controller.index')
-    router.get('/avatar', '#controllers/avatars_controller.show')
-    router.post('/avatar', '#controllers/avatars_controller.select')
-    router.delete('/avatar', '#controllers/avatars_controller.delete')
+
+    router.get('/avatars', [AvatarsController, 'index'])
+    router.get('/avatar', [AvatarsController, 'show'])
+    router.post('/avatar', [AvatarsController, 'select'])
+    router.delete('/avatar', [AvatarsController, 'delete'])
 
     router.get('/topics/user/:userId', [TopicsController, 'getByUser'])
 

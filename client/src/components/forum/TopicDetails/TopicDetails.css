@@ -1,20 +1,24 @@
 .topic-header {
-    background-color: #22233a;
-    border-bottom: 0.6px solid #8e8e8e;
-    padding: 0.5rem 3rem 2rem 3rem;
-    color: #e4e4e4;
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 2rem 5rem 2rem 5rem;
+    color: var(--text-main);
 }
 
 .topic-title {
     margin-bottom: 1.2rem;
     margin-top: 0.8rem;
     margin: 0.8rem 0 1.2rem 0;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .topic-content {
     line-height: 1.5rem;
     font-size: 0.9rem;
     margin: 0;
+    color: var(--text-muted);
 }
 
 .topic-footer {
@@ -22,6 +26,7 @@
     font-size: 0.9rem;
     display: flex;
     align-items: center;
+    color: var(--text-muted);
 }
 
 .topic-footer img {
@@ -48,18 +53,20 @@
     align-items: center;
     gap: 2rem;
     width: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(63, 105, 255, 0.03) 100%);
 }
 
 .topic-form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 90%;
+    width: 100%;
+    max-width: 90%;
 }
 
 .topic-label {
     font-size: 1rem;
-    color: #e4e4e4;
+    color: var(--text-main);
     font-weight: 500;
     margin-bottom: 0.3rem;
 }

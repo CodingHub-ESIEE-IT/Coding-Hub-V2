@@ -2,7 +2,7 @@
 
 import { ActionResponse } from '@/types/action';
 import { cookies } from 'next/headers';
-import {revalidatePath} from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function editUserAction(
   prevState: ActionResponse | null,
@@ -72,6 +72,16 @@ export async function editAvatarAction(
 ): Promise<ActionResponse> {
   const cookieStore = await cookies();
   const token = cookieStore.get('access_token')?.value;
+
+  console.log("zizizizizi")
+
+  if (!token) {
+    return {
+      success: false,
+      message: 'Aucun token trouvé.',
+      errors: {},
+    };
+  }
 
   try {
     const avatarUrl = formData.get('avatarUrl') as string;

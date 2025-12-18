@@ -2,11 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background-color: #22233a;
-  padding: 1.5rem;
   margin-top: 1.2rem;
   color: #ffffff;
-  width: 80%;
+  width: 90%;
 }
 
 .edit-profile-title {
@@ -19,9 +17,9 @@
 .edit-profile-input {
   width: 45%;
   padding: 10px;
-  border: 1px solid #606060;
-  border-radius: 4px;
-  background-color: #2f314f;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-input);
   color: #ffffff;
   outline: none;
   resize: none;
@@ -45,7 +43,7 @@
 
 .form-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .spinner {
@@ -75,7 +73,6 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background-color: #22233a;
   padding: 1.5rem;
   margin-top: 1.2rem;
   color: #ffffff;
@@ -84,13 +81,13 @@
 }
 
 .edit-avatar-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 
-    img {
-        border-radius: 50%;
-        object-fit: cover;
-    }
- }
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

@@ -24,6 +24,8 @@ export default class AvatarsController {
   async select({ auth, request, response }: HttpContext) {
     const user = auth.getUserOrFail()
 
+    console.log(user)
+
     const { avatarUrl } = await request.validateUsing(selectAvatarValidator)
 
     user.avatarUrl = avatarUrl

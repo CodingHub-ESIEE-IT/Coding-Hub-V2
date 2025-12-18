@@ -1,14 +1,15 @@
 .tiptap-editor-container {
     border-radius: 6px;
     overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
 .tiptap-editor-content .ProseMirror {
     padding: 0.8rem;
-    border: 1px solid #1d1e35;
+    border: none;
     border-top: none;
-    background-color: #22233a;
-    color: #e4e4e4;
+    background-color: var(--bg-card);
+    color: var(--text-main);
     min-height: 150px;
     border-radius: 0 0 6px 6px;
     outline: none;
@@ -23,7 +24,7 @@
 .tiptap-editor-content .ProseMirror h2 {
     font-size: 1.5rem;
     margin: 1rem 0 0.5rem;
-    color: #e4e4e4;
+    color: var(--text-main);
 }
 
 .tiptap-editor-content .ProseMirror ul,
@@ -37,20 +38,20 @@
 }
 
 .tiptap-editor-content .ProseMirror blockquote {
-    border-left: 3px solid #3f69ff;
+    border-left: 3px solid var(--primary);
     padding-left: 1rem;
     margin-left: 0;
     margin-right: 0;
     font-style: italic;
-    color: #c4c4c4;
+    color: var(--text-muted);
 }
 
 .tiptap-editor-content .ProseMirror .code-block {
-    background-color: #1a1b2e;
+    background-color: #0d0f17;
     border-radius: 8px;
     margin: 1rem 0;
     padding: 1rem;
     position: relative;
-    border: 1px solid #2d2e4a;
+    border: 1px solid var(--border-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }

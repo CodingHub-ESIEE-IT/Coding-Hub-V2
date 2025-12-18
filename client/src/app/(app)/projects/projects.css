@@ -1,12 +1,11 @@
 .projects-page {
-    background-color: #1e1e2f;
+    /* Background handled by globals */
     min-height: 100vh;
     padding: 2rem;
     display: flex;
     justify-content: center;
-    color: #ffffff;
-    overflow: hidden;
-    /* Prevent body scroll */
+    color: var(--text-main);
+    background: linear-gradient(180deg, transparent 0%, rgba(63, 105, 255, 0.03) 100%);
 }
 
 .projects-container {
@@ -14,31 +13,33 @@
     max-width: 1200px;
     display: flex;
     gap: 2rem;
-    height: calc(100vh - 100px);
-    /* Adjust based on header height */
 }
 
 /* --- Feed Column --- */
 .projects-feed-container {
     flex: 1;
-    overflow-y: auto;
-    padding-right: 1rem;
-    /* Space for scrollbar */
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+    padding-right: 1.5rem;
 }
 
 .projects-feed-container::-webkit-scrollbar {
-    display: none;
+    width: 6px;
+    display: block;
+}
+
+.projects-feed-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.projects-feed-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
 }
 
 .projects-feed {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    padding-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
@@ -48,12 +49,81 @@
 }
 
 .project-card {
-    background-color: #2a2a40;
-    border-radius: 16px;
+    background-color: var(--bg-card);
+    border-radius: 20px;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary);
+    z-index: 10;
+}
+
+.create-project-card {
+    background: linear-gradient(145deg, rgba(42, 42, 64, 0.5) 0%, rgba(30, 30, 47, 0.8) 100%);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    text-align: center;
+    transition: all 0.3s ease;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.create-project-card:hover {
+    border-color: var(--primary);
+    background: var(--bg-card);
+    transform: translateY(-2px);
+    z-index: 10;
+}
+
+.create-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(99, 102, 241, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.create-project-card:hover .create-icon-wrapper {
+    transform: scale(1.1) rotate(90deg);
+}
+
+.create-text h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #fff, #a0a0b0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.create-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 .card-header {
@@ -86,7 +156,7 @@
 
 .post-date {
     font-size: 0.75rem;
-    color: #a0a0b0;
+    color: var(--text-muted);
 }
 
 .more-options {
@@ -112,8 +182,9 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    padding-top: 66.66%;
-    /* Aspect ratio 3:2 */
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio looks more pro */
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .post-image {
@@ -129,7 +200,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-color);
 }
 
 .interaction-item {
@@ -150,13 +221,12 @@
 .projects-sidebar {
     width: 300px;
     flex-shrink: 0;
-    background-color: #252538;
-    /* Slightly lighter than bg */
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1.5rem;
     height: fit-content;
     display: none;
-    /* Hidden on mobile */
 }
 
 @media (min-width: 1024px) {

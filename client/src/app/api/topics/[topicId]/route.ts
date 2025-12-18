@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAuthToken } from '@/lib/utils/auth';
+import { getAuthToken } from '@/lib/utils/api/auth';
 
 const ADONIS_API_URL = process.env.ADONIS_API_URL;
 
@@ -29,15 +29,15 @@ export async function GET(
     if (!response.ok) {
       if (response.status === 401) {
         return NextResponse.json(
-            { error: 'Token invalide ou expiré' },
-            { status: 401 }
+          { error: 'Token invalide ou expiré' },
+          { status: 401 }
         );
       }
 
       if (response.status === 403) {
         return NextResponse.json(
-            { error: 'Accès non autorisé à ce topic' },
-            { status: 403 }
+          { error: 'Accès non autorisé à ce topic' },
+          { status: 403 }
         );
       }
 
@@ -55,4 +55,4 @@ export async function GET(
   }
 }
 
-export async function POST() {}
+export async function POST() { }

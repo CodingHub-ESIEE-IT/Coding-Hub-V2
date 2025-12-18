@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useLayoutEffect, useRef} from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import hljs from "highlight.js";
 import './ContentHighLight.css'
 import "highlight.js/styles/atom-one-dark.css";
@@ -40,18 +40,20 @@ const ContentHighLight = ({ htmlContent }: IProps) => {
     requestAnimationFrame(() => {
       if (contentRef.current) {
         contentRef.current.querySelectorAll('pre code').forEach((block) => {
-          hljs.highlightElement(block as HTMLElement);
+          if (!block.classList.contains('hljs')) {
+            hljs.highlightElement(block as HTMLElement);
+          }
         });
       }
     });
-  }, [htmlContent]);
+  });
 
   return (
-      <div
-          ref={contentRef}
-          className="topic-content"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-      />
+    <div
+      ref={contentRef}
+      className="topic-content"
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    />
   );
 };
 

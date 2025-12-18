@@ -1,6 +1,6 @@
 'use server';
 
-import { getCurrentUser } from '@/lib/utils/auth';
+import { getCurrentUser } from '@/lib/utils/api/auth';
 import { cookies } from 'next/headers';
 
 export async function createLikeAction(replyId: number) {

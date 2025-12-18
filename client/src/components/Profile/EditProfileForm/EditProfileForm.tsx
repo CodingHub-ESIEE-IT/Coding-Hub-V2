@@ -55,7 +55,6 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   return (
     <>
       <form className="edit-profile-form" action={action}>
-        <h3 className={'edit-profile-title'}>Profil</h3>
         <input type="hidden" name="id" value={user.id} />
         {inputs.map((input) => (
           <div className="form-group" key={input.id}>

@@ -1,4 +1,4 @@
-import {fetchApi} from "@/lib/utils/api";
+import { fetchApi } from "@/lib/utils/api/api";
 
 export async function getTopics(categoryName: string) {
     try {

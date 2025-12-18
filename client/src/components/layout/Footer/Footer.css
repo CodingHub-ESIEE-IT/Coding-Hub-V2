@@ -1,6 +1,7 @@
 .footer-container {
-    background-color: #22233a;
-    color: #e4e4e4;
+    background-color: var(--bg-dark);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
     padding: 3rem 3rem 1.5rem;
 }
 
@@ -20,13 +21,13 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 1.2rem;
-    color: #ffffff;
+    color: var(--text-main);
 }
 
 .footer-text {
     font-size: 0.9rem;
     line-height: 1.5;
-    color: #aaaaaa;
+    color: var(--text-muted);
 }
 
 .footer-links {
@@ -36,24 +37,24 @@
 }
 
 .footer-link {
-    color: #aaaaaa;
+    color: var(--text-muted);
     font-size: 0.9rem;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-    color: #ffffff;
-    text-decoration: underline;
+    color: var(--primary);
+    text-decoration: none;
 }
 
 .footer-bottom {
-    border-top: 1px solid #3a3b56;
+    border-top: 1px solid var(--border-color);
     padding-top: 1.5rem;
     text-align: center;
 }
 
 .copyright {
     font-size: 0.85rem;
-    color: #888888;
+    color: #64748b;
 }

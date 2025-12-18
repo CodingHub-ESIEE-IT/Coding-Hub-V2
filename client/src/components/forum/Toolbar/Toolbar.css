@@ -1,9 +1,8 @@
 .toolbar-container {
     display: flex;
     flex-direction: column;
-    background-color: #22233a;
-    border: 1px solid #1d1e35;
-    border-bottom: none;
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
     border-radius: 6px 6px 0 0;
 }
 
@@ -17,7 +16,7 @@
 
 .toolbar-separator {
     height: 1px;
-    background-color: #1d1e35;
+    background-color: var(--border-color);
     width: 100%;
 }
 
@@ -32,7 +31,7 @@
     justify-content: center;
     background: transparent;
     border: none;
-    color: #e4e4e4;
+    color: var(--text-main);
     width: 32px;
     height: 32px;
     border-radius: 6px;
@@ -46,12 +45,12 @@
 }
 
 .toolbar-button--active {
-    background: #3f69ff !important;
+    background: var(--primary) !important;
     color: #ffffff;
 }
 
 .toolbar-button--active:hover {
-    background-color: #3f69ff !important;
+    background-color: var(--primary) !important;
 }
 
 .toolbar-button--disabled {
@@ -62,7 +61,7 @@
 .toolbar-divider {
     width: 1px;
     height: 24px;
-    background-color: #3f3f3f;
+    background-color: var(--border-color);
     margin: 0 0.5rem;
 }
 
@@ -80,8 +79,8 @@
 }
 
 .toolbar-language-select-container {
-    background-color: #22233a;
-    border: 1px solid #1d1e35;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 1rem;
     z-index: 100;
@@ -94,7 +93,7 @@
 
 .toolbar-language-select-title {
     margin: 0 0 0.75rem 0;
-    color: #e4e4e4;
+    color: var(--text-main);
     font-size: 1rem;
 }
 
@@ -107,9 +106,9 @@
 }
 
 .toolbar-language-option {
-    background-color: #1a1b2e;
-    color: #e4e4e4;
-    border: 1px solid #3f3f3f;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 0.5rem;
     text-align: center;
@@ -118,14 +117,14 @@
 }
 
 .toolbar-language-option:hover {
-    background-color: #3f69ff;
+    background-color: var(--primary);
     color: white;
 }
 
 .toolbar-close-button {
     background-color: transparent;
-    color: #e4e4e4;
-    border: 1px solid #3f3f3f;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 0.5rem 1rem;
     margin-top: 1rem;
@@ -134,5 +133,5 @@
 }
 
 .toolbar-close-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--border-color);
 }

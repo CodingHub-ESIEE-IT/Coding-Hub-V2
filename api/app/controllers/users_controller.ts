@@ -26,4 +26,12 @@ export default class UsersController {
 
     return user
   }
+
+  /**
+   * Get latest users
+   */
+  async latest({ request }: HttpContext) {
+    const limit = request.input('limit', 10)
+    return await User.query().orderBy('createdAt', 'desc').limit(limit)
+  }
 }

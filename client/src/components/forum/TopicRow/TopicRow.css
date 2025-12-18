@@ -1,0 +1,146 @@
+.topic-row {
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.topic-row:hover {
+    background-color: rgba(63, 105, 255, 0.05);
+}
+
+.topic-row:last-child {
+    border-bottom: none;
+}
+
+.topic-cell {
+    padding: 1rem;
+    vertical-align: middle;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Status Icon Cell */
+.cell-status {
+    width: 50px;
+    text-align: center;
+}
+
+.status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+}
+
+.status-icon.solved {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+/* Main Topic Info */
+.cell-main {
+    width: 50%;
+}
+
+.topic-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+    transition: color 0.2s;
+}
+
+.topic-row:hover .topic-title {
+    color: var(--primary);
+}
+
+.topic-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.topic-tag {
+    background: rgba(63, 105, 255, 0.1);
+    color: #8fa8ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Author Cell */
+.cell-author {
+    width: 15%;
+}
+
+.author-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    /* Fallback */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.author-name {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* Stats Cell */
+.cell-stats {
+    width: 10%;
+    text-align: center;
+}
+
+.stats-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stat-value {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Activity Cell */
+.cell-activity {
+    width: 20%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.activity-date {
+    display: block;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.activity-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}

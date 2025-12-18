@@ -1,7 +1,7 @@
 .card-container {
-    background-color: #2f314f;
+    background-color: var(--bg-card);
     border-radius: 8px;
-    border: 1px solid #606060;
+    border: 1px solid var(--border-color);
     padding: 20px;
     position: relative;
     cursor: pointer;
